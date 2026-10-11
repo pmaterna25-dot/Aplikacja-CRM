@@ -19,6 +19,7 @@ from gui.forms import ClientForm
 from gui.table import ClientTable
 from gui.filters import FilterPanel
 from gui.popups import StatisticsPopup, StyleSelector
+from gui.respawn_timer import RespawnTimer
 
 
 class MainWindow:
@@ -41,6 +42,7 @@ class MainWindow:
         self.edit_mode = False
         self.selected_item_id = None
         self.selected_row_number = None
+        self.respawn_timer = None
 
         # Setup UI
         self._setup_background()
@@ -211,6 +213,13 @@ class MainWindow:
     def show_statistics_popup(self):
         """Show statistics popup."""
         StatisticsPopup(self.root, self.excel_manager)
+
+    def show_respawn_timer(self):
+        """Show respawn reminder window, reusing the open one."""
+        if self.respawn_timer and self.respawn_timer.popup.winfo_exists():
+            self.respawn_timer.popup.lift()
+            return
+        self.respawn_timer = RespawnTimer(self.root)
 
     def show_style_selector(self):
         """Show style selector popup."""

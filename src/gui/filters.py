@@ -139,6 +139,11 @@ class FilterPanel:
             command=self.main_window.show_statistics_popup
         )
         btn_statystyki.pack(side="left", padx=8)
+        btn_respy = tk.Button(
+            frame_stats, text="Respy", font=("Arial", 10), width=10,
+            command=self.main_window.show_respawn_timer
+        )
+        btn_respy.pack(side="left", padx=8)
         frame_stats.grid(row=2, column=3, padx=16, pady=3, sticky="w")
 
         frame_style = tk.Frame(self.frame, bg="#e6f2ff")
